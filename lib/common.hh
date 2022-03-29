@@ -13,3 +13,4 @@
 #include <vector>
 
 #include "util/logger.hh"
+#include "util/bytes.hh"

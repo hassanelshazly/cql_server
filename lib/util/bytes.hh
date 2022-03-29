@@ -1,3 +1,5 @@
+#pragma once
+
 #include "common.hh"
 
 inline uint64_t byteswap64(uint64_t value) {
