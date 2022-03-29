@@ -1,0 +1,38 @@
+name: ci_meson
+
+on:
+  push:
+    paths:
+      - "**.h"
+      - "**.hh"
+      - "**.hpp"
+      - "**.cc"
+      - "**.cpp"
+  pull_request:
+    paths:
+      - "**.h"
+      - "**.hh"
+      - "**.hpp"
+      - "**.cc"
+      - "**.cpp"
+
+jobs:
+  linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - run: >
+          sudo apt-get -qq update &&
+          sudo apt-get -qq install -y
+          cmake
+          meson
+      - run: meson setup build/
+        env:
+          CC: gcc
+          CXX: g++
+      - run: meson test -C build/ -v
+      - uses: actions/upload-artifact@v1
+        if: failure()
+        with:
+          name: Linux_Meson_Testlog
+          path: build/meson-logs/testlog.txt
