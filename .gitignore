@@ -1,0 +1,18 @@
+# Build Files
+build/
+compile_commands.json
+
+# Doxygen Output
+doc/html
+doc/latex
+
+# Meson Wrap
+subprojects/*
+!subprojects/*.wrap
+
+# vs-code
+.vscode/
+.cache/
+
+# Misc
+obsolete/
